@@ -1,0 +1,13 @@
+Presight Pillar 2 ETL summary
+run_timestamp_utc=2026-09-30T20:37:37.920809+00:00
+projects_raw_rows=500
+projects_output_rows=500
+employees_raw_rows=1000
+employees_output_rows=1000
+transactions_raw_rows=50000
+transactions_output_rows=50000
+null_amount_decision=replace null amount with 0.0 AED and retain the original amount column
+null_approved_by_decision=retain null approver, set is_approved to False, and leave full_name null
+join_decision=left joins preserve every transaction; many-to-one validation prevents row multiplication
+execution_seconds=0.856
+output_directory=/app/outputs/results/adil_razack/02_sql_and_viz

@@ -1,0 +1,12 @@
+
+Pipeline Summary
+========================
+Run Time: 2026-06-25 22:08:17.502827
+
+Input Records: 50000
+Output Records: 50000
+
+Null amount handled: 740 → replaced with 0.0
+Null approved_by handled: 2444 → treated as not approved
+
+Execution Time: 0.41 seconds

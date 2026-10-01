@@ -1,0 +1,14 @@
+# 1. Go to the folder containing the Dockerfile
+Set-Location "C:\Users\adil.razack\OneDrive - Presight AI\Documents\GitHub\stackup-engineering-academy_assessment"
+
+# 2. Build the image; this reads the Dockerfile and installs dependencies
+docker build -t presight-etl .
+
+# 3. Get the current repository path
+$repo = (Get-Location).Path
+
+# 4. Start a container from the image; its ENTRYPOINT runs etl_full.py
+docker run --rm -v "${repo}\outputs:/app/outputs" presight-etl
+
+# 5. Confirm the result exists on your computer
+Get-Item .\outputs\results\adil_razack\02_sql_and_viz\transactions_clean.csv

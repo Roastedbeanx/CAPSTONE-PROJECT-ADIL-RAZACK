@@ -1,0 +1,24 @@
+{
+    "run_timestamp": "2026-06-26T00:56:24.272319",
+    "total_messages_consumed": 8300,
+    "event_type_counts": {
+        "login": 2121,
+        "comment_added": 325,
+        "budget_updated": 252,
+        "approval_granted": 136,
+        "approval_rejected": 26,
+        "project_status_change": 648,
+        "document_uploaded": 524,
+        "meeting_scheduled": 333,
+        "task_completed": 849,
+        "escalation_raised": 178,
+        "approval_requested": 161,
+        "task_created": 968,
+        "logout": 1606,
+        "escalation_resolved": 157,
+        "milestone_reached": 16
+    },
+    "critical_escalations_forwarded": 14,
+    "throughput_msgs_per_sec": 13606.56,
+    "execution_time_sec": 0.61
+}

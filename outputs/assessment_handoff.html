@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Data Engineering Assessment Handoff</title>
+<style>
+@page { size: A4; margin: 16mm; }
+body { font-family: Arial, sans-serif; color: #1f2933; line-height: 1.45; font-size: 10.5pt; }
+h1 { color: #123b5d; font-size: 25pt; margin: 0 0 4px; }
+h2 { color: #0b6e69; border-bottom: 2px solid #d7e7e5; padding-bottom: 4px; margin-top: 22px; }
+h3 { color: #123b5d; margin-bottom: 4px; }
+.subtitle { color: #5b6770; margin-bottom: 20px; }
+.status { background: #edf7f5; border-left: 5px solid #0b6e69; padding: 10px 12px; margin: 12px 0; }
+.warning { background: #fff7e6; border-left: 5px solid #d18b00; padding: 10px 12px; margin: 12px 0; }
+code, pre { font-family: Consolas, monospace; font-size: 9pt; }
+pre { background: #f4f6f8; border: 1px solid #d9e0e5; padding: 9px; white-space: pre-wrap; }
+table { border-collapse: collapse; width: 100%; margin: 8px 0 14px; }
+th, td { border: 1px solid #cbd5dc; padding: 6px 7px; vertical-align: top; }
+th { background: #123b5d; color: white; text-align: left; }
+.path { color: #124e78; font-family: Consolas, monospace; font-size: 9pt; }
+.small { color: #5b6770; font-size: 9pt; }
+.page-break { page-break-before: always; }
+</style>
+</head>
+<body>
+<h1>Data Engineering Assessment Handoff</h1>
+<div class="subtitle">StackUp Engineering Academy | Adil Razack | Status verified 23 September 2026</div>
+
+<div class="status"><strong>Overall outcome:</strong> The four pillars are implemented in the repository. The PostgreSQL warehouse schema has also been created successfully in the running Docker database. The six tables currently exist but contain zero rows.</div>
+
+<h2>1. Pillar Outcomes</h2>
+<table>
+<tr><th>Pillar</th><th>Outcome</th><th>Main locations</th></tr>
+<tr><td><strong>1. Foundations</strong></td><td>Project and employee cleaning, star-schema DDL, SCD Type 2 employee model, and employee data-quality work are implemented.</td><td><span class="path">solutions/submissions/adil_razack/01_foundations/</span><br><span class="path">outputs/results/adil_razack/01_foundations/</span></td></tr>
+<tr><td><strong>2. SQL and Visualization</strong></td><td>Transaction ETL, six business queries, optimisation notes, cleaned CSV outputs, and dashboard/mockup artifacts are present.</td><td><span class="path">solutions/submissions/adil_razack/02_sql_and_viz/</span><br><span class="path">outputs/results/adil_razack/02_sql_and_viz/</span><br><span class="path">presentation/</span></td></tr>
+<tr><td><strong>3. Big Data</strong></td><td>Spark event processing, Kafka producer/consumer logic, and Airflow orchestration with a DQ gate are implemented. Spark outputs include Parquet summaries.</td><td><span class="path">solutions/submissions/adil_razack/03_big_data/</span><br><span class="path">outputs/results/adil_razack/03_big_data/</span></td></tr>
+<tr><td><strong>4. Infrastructure and Governance</strong></td><td>Docker support, configurable DQ framework, governance documentation, retention, PII, and access guidance are present.</td><td><span class="path">solutions/submissions/adil_razack/04_infrastructure/</span><br><span class="path">outputs/results/adil_razack/04_infrastructure/</span><br><span class="path">docker-compose.yml</span></td></tr>
+</table>
+
+<h2>2. Key Deliverables</h2>
+<ul>
+<li>Warehouse model: <span class="path">solutions/submissions/adil_razack/01_foundations/data_model.sql</span></li>
+<li>Project ETL output: <span class="path">outputs/results/adil_razack/01_foundations/projects_clean.csv</span></li>
+<li>Employee ETL output: <span class="path">outputs/results/adil_razack/01_foundations/employees_clean.csv</span></li>
+<li>Transaction ETL: <span class="path">solutions/submissions/adil_razack/02_sql_and_viz/etl_full.py</span></li>
+<li>Transaction output: <span class="path">outputs/results/adil_razack/02_sql_and_viz/transactions_clean.csv</span></li>
+<li>SQL queries: <span class="path">solutions/submissions/adil_razack/02_sql_and_viz/queries.sql</span></li>
+<li>Dashboard artifacts: <span class="path">presentation/pillar2_powerbi_report.html</span>, <span class="path">presentation/pillar2_dashboard_mockup.html</span>, and <span class="path">presentation/pillar2_powerbi_dataset.csv</span></li>
+<li>Governance: <span class="path">solutions/submissions/adil_razack/04_infrastructure/data_governance.md</span></li>
+</ul>
+
+<h2>3. Warehouse Status</h2>
+<p>The schema was executed successfully against PostgreSQL in Docker using database <code>airflow</code>.</p>
+<table>
+<tr><th>Connection</th><th>Value</th></tr>
+<tr><td>Host and port</td><td><code>localhost:5432</code></td></tr>
+<tr><td>Database</td><td><code>airflow</code></td></tr>
+<tr><td>User</td><td><code>presight</code></td></tr>
+<tr><td>Tables</td><td><code>dim_date</code>, <code>dim_project</code>, <code>dim_vendor</code>, <code>dim_employee</code>, <code>bridge_employee_project</code>, <code>fact_transactions</code></td></tr>
+<tr><td>Current rows</td><td>Zero in each table. DDL exists; data loading is not part of the completed run.</td></tr>
+</table>
+<div class="warning"><strong>Important:</strong> The assessment requires cleaned CSV outputs and SQL/schema work. A populated live warehouse is useful for demonstration, but it is a separate runtime loading step and was not completed here.</div>
+
+<h2>4. How to Re-run</h2>
+<p>Run PowerShell from the repository root. The repository path is:</p>
+<pre>C:\Users\adil.razack\OneDrive - Presight AI\Documents\GitHub\stackup-engineering-academy_assessment</pre>
+<p>Or navigate using:</p>
+<pre>Set-Location "C:\Users\adil.razack\OneDrive - Presight AI\Documents\GitHub\stackup-engineering-academy_assessment"</pre>
+
+<h3>Run individual pillars</h3>
+<pre>.\scripts\run_pillar_1.ps1
+.\scripts\run_pillar_2.ps1
+.\scripts\run_pillar_3.ps1
+.\scripts\run_pillar_4.ps1</pre>
+
+<h3>Run all pillars</h3>
+<pre>.\scripts\run_all_pillars.ps1</pre>
+
+<h3>Start Docker services</h3>
+<pre>docker compose up -d
+docker compose ps</pre>
+<p>Services: PostgreSQL on <code>localhost:5432</code>, Kafka UI on <code>http://localhost:8080</code>, and Airflow on <code>http://localhost:8081</code>.</p>
+
+<h3>Run ETL directly</h3>
+<pre>python .\solutions\submissions\adil_razack\01_foundations\etl_pipeline.py
+python .\solutions\submissions\adil_razack\02_sql_and_viz\etl_full.py
+python .\solutions\submissions\adil_razack\04_infrastructure\dq_framework.py</pre>
+
+<h2>5. Pillar 3: Run and Show Outputs</h2>
+<p><strong>Code:</strong> <span class="path">solutions/submissions/adil_razack/03_big_data/</span></p>
+<p><strong>Run everything in Pillar 3:</strong></p>
+<pre>.\scripts\run_pillar_3.ps1</pre>
+<p>This runs Spark first and then Kafka producer/consumer processing. Kafka requires Docker services to be running:</p>
+<pre>docker compose up -d
+$repo = (Get-Location).Path
+docker run --rm `
+	--name presight-spark `
+	-v "${repo}:/opt/project" `
+	-w /opt/project `
+	apache/spark:4.0.1-python3 `
+	/opt/spark/bin/spark-submit `
+	solutions/submissions/adil_razack/03_big_data/spark_pipeline.py
+python .\solutions\submissions\adil_razack\03_big_data\kafka_streaming.py --mode both --delay-seconds 0.001</pre>
+<p>Docker runs Spark on Linux inside the container, so Windows does not need <code>winutils.exe</code> or <code>HADOOP_HOME</code>.</p>
+<p><strong>Expected Spark outputs:</strong> five Parquet directories under:</p>
+<pre>outputs\results\adil_razack\03_big_data\spark\project_activity_summary
+outputs\results\adil_razack\03_big_data\spark\user_activity_summary
+outputs\results\adil_razack\03_big_data\spark\escalation_log
+outputs\results\adil_razack\03_big_data\spark\daily_event_volume
+outputs\results\adil_razack\03_big_data\spark\peak_usage_analysis</pre>
+<p>Each directory contains a <code>part-*.parquet</code> data file and <code>_SUCCESS</code> marker. To display a Parquet result:</p>
+<pre>python -c "from pathlib import Path; import pandas as pd; p=next(Path('outputs/results/adil_razack/03_big_data/spark/project_activity_summary').glob('part-*.parquet')); print(pd.read_parquet(p).head(20).to_string(index=False))"</pre>
+<p><strong>Expected Kafka output:</strong></p>
+<pre>outputs\results\adil_razack\03_big_data\kafka\summary.json</pre>
+<p>Display the Kafka summary:</p>
+<pre>Get-Content .\outputs\results\adil_razack\03_big_data\kafka\summary.json</pre>
+<p>Kafka topics can be inspected in Kafka UI at <code>http://localhost:8080</code>. The Airflow DAG is available at <code>http://localhost:8081</code>; log in with <code>admin</code> / <code>admin</code>, enable the DAG, trigger it, and open task logs to show the DQ gate and XCom results.</p>
+
+<h2>6. Pillar 4: Run and Show Outputs</h2>
+<p><strong>Code and configuration:</strong></p>
+<pre>solutions\submissions\adil_razack\04_infrastructure\dq_framework.py
+solutions\submissions\adil_razack\04_infrastructure\dq_config.yml
+solutions\submissions\adil_razack\04_infrastructure\data_governance.md</pre>
+<p><strong>Run the DQ framework:</strong></p>
+<pre>.\scripts\run_pillar_4.ps1
+or
+python .\solutions\submissions\adil_razack\04_infrastructure\dq_framework.py</pre>
+<p>The framework runs six checks for each configured dataset: completeness, uniqueness, numeric validity, date validity, consistency, and referential integrity.</p>
+<p><strong>Expected output reports:</strong></p>
+<pre>outputs\results\adil_razack\04_infrastructure\dq_report_projects.md
+outputs\results\adil_razack\04_infrastructure\dq_report_employees.md
+outputs\results\adil_razack\04_infrastructure\dq_report_transactions.md
+outputs\results\adil_razack\04_infrastructure\dq_report_employees_salary_history.md</pre>
+<p>Display reports in PowerShell:</p>
+<pre>Get-Content .\outputs\results\adil_razack\04_infrastructure\dq_report_projects.md
+Get-Content .\outputs\results\adil_razack\04_infrastructure\dq_report_transactions.md</pre>
+<p>Open the governance document in VS Code:</p>
+<pre>code .\solutions\submissions\adil_razack\04_infrastructure\data_governance.md</pre>
+
+<div class="page-break"></div>
+<h2>7. Warehouse Schema Commands</h2>
+<h3>Check the tables</h3>
+<pre>docker exec presight-postgres psql -U presight -d airflow -c "\dt"
+</pre>
+<h3>Recreate the schema only when needed</h3>
+<p>Do not rerun this against an existing populated database unless you intentionally drop the tables first.</p>
+<pre>Get-Content -Raw ".\solutions\submissions\adil_razack\01_foundations\data_model.sql" | docker exec -i presight-postgres psql -v ON_ERROR_STOP=1 -U presight -d airflow</pre>
+<h3>Check row counts</h3>
+<pre>docker exec presight-postgres psql -U presight -d airflow -c "SELECT 'dim_date' AS table_name, COUNT(*) FROM dim_date UNION ALL SELECT 'dim_project', COUNT(*) FROM dim_project UNION ALL SELECT 'dim_vendor', COUNT(*) FROM dim_vendor UNION ALL SELECT 'dim_employee', COUNT(*) FROM dim_employee UNION ALL SELECT 'bridge_employee_project', COUNT(*) FROM bridge_employee_project UNION ALL SELECT 'fact_transactions', COUNT(*) FROM fact_transactions;"</pre>
+
+<h2>8. Assessment Notes and Limitations</h2>
+<ul>
+<li>The Docker Compose warning about the obsolete <code>version</code> attribute is non-blocking. The services started successfully.</li>
+<li>A native Power BI <code>.pbix</code> file cannot be generated without Power BI Desktop. HTML and CSV reporting substitutes are available in <code>presentation/</code>.</li>
+<li>The schema and table creation are verified. The fact and dimension tables are empty until a staging/load process is run.</li>
+<li>The existing ETL produces cleaned CSV staging outputs, not separate <code>dim_*.csv</code> or <code>fact_transactions.csv</code> files. This matches the Pillar 2 assessment requirement for three cleaned DataFrame CSVs.</li>
+</ul>
+
+<h2>9. Final Handoff Checklist</h2>
+<table>
+<tr><th>Item</th><th>Status</th></tr>
+<tr><td>Four pillar solution code present</td><td>Complete</td></tr>
+<tr><td>Cleaned CSV and report artifacts present</td><td>Complete</td></tr>
+<tr><td>Docker services available</td><td>Verified running</td></tr>
+<tr><td>PostgreSQL schema materialized</td><td>Verified, six tables</td></tr>
+<tr><td>Warehouse data loaded</td><td>Pending, tables are empty</td></tr>
+<tr><td>Native Power BI PBIX</td><td>Not available; environment limitation</td></tr>
+</table>
+</body>
+</html>

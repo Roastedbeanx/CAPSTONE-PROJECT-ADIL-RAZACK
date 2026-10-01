@@ -1,0 +1,7 @@
+outputs/
+.git/
+__pycache__/
+*.pyc
+venv/
+spark-env/
+*.ipynb

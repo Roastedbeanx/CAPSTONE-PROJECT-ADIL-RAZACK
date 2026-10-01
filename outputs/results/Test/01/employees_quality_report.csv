@@ -1,0 +1,11 @@
+issue,affected_rows
+missing_email,10
+missing_department,0
+invalid_dates,8
+future_dates,0
+old_dates,0
+negative_salary,0
+extreme_salary,0
+invalid_experience,5
+senior_low_salary,303
+inactive_conflict,40

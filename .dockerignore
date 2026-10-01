@@ -1,0 +1,10 @@
+.git/
+outputs/
+extra/
+spark-env/
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.log
+*.ipynb

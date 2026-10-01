@@ -1,0 +1,45 @@
+datasets:
+  projects:
+    completeness_threshold: 0.90
+    pk_columns: [project_id]
+    numeric_ranges:
+      budget: {min: 0, max: 10000000}
+      actual_cost: {min: 0, max: 10000000}
+    date_columns: [start_date, end_date]
+    consistency_rules:
+      - {type: before, columns: [start_date, end_date]}
+      - {type: non_negative, column: actual_cost}
+    foreign_keys:
+      project_manager_id: {dataset: employees, column: employee_id}
+  employees:
+    completeness_threshold: 0.85
+    pk_columns: [employee_id]
+    numeric_ranges:
+      salary: {min: 0, max: 1000000}
+      years_experience: {min: 0, max: 70}
+    date_columns: [hire_date]
+    consistency_rules:
+      - {type: non_negative, column: salary}
+      - {type: non_negative, column: years_experience}
+    foreign_keys: {}
+  transactions:
+    completeness_threshold: 0.80
+    pk_columns: [transaction_id]
+    numeric_ranges:
+      amount: {min: 0, max: 100000000}
+    date_columns: [transaction_date]
+    consistency_rules:
+      - {type: non_negative, column: amount}
+    foreign_keys:
+      project_id: {dataset: projects, column: project_id}
+  employees_salary_history:
+    completeness_threshold: 0.90
+    pk_columns: []
+    numeric_ranges:
+      previous_salary: {min: 0, max: 1000000}
+      new_salary: {min: 0, max: 1000000}
+    date_columns: [effective_date]
+    consistency_rules:
+      - {type: non_negative, column: new_salary}
+    foreign_keys:
+      employee_id: {dataset: employees, column: employee_id}

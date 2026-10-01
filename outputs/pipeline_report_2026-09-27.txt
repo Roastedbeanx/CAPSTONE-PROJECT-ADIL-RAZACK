@@ -1,0 +1,89 @@
+{
+  "projects_raw_count": 500,
+  "projects_clean_count": 500,
+  "employees_raw_count": 1000,
+  "employees_clean_count": 1000,
+  "transactions_raw_count": 50000,
+  "transactions_clean_count": 50000,
+  "dq_results": {
+    "projects": {
+      "status": "FAIL",
+      "completeness": {
+        "project_id": 1.0,
+        "project_name": 1.0,
+        "department": 1.0,
+        "status": 1.0,
+        "start_date": 0.87,
+        "end_date": 0.428,
+        "budget": 0.936,
+        "actual_cost": 0.88,
+        "project_manager_id": 1.0,
+        "priority": 1.0,
+        "region": 1.0
+      },
+      "key_completeness": {
+        "project_id": 1.0
+      },
+      "failed_columns": [
+        "start_date",
+        "end_date",
+        "actual_cost"
+      ],
+      "duplicate_key_count": 0,
+      "row_count": 500
+    },
+    "employees": {
+      "status": "PASS",
+      "completeness": {
+        "employee_id": 1.0,
+        "full_name": 1.0,
+        "email": 0.99,
+        "department": 1.0,
+        "role": 1.0,
+        "level": 1.0,
+        "hire_date": 0.992,
+        "salary": 1.0,
+        "manager_id": 1.0,
+        "region": 1.0,
+        "status": 1.0,
+        "years_experience": 1.0
+      },
+      "key_completeness": {
+        "employee_id": 1.0
+      },
+      "failed_columns": [],
+      "duplicate_key_count": 0,
+      "row_count": 1000
+    },
+    "transactions": {
+      "status": "FAIL",
+      "completeness": {
+        "transaction_id": 1.0,
+        "project_id": 1.0,
+        "vendor_id": 1.0,
+        "vendor_name": 1.0,
+        "category": 1.0,
+        "amount": 0.9852,
+        "currency": 1.0,
+        "transaction_date": 1.0,
+        "approved_by": 0.95112,
+        "payment_status": 1.0,
+        "invoice_ref": 1.0,
+        "notes": 0.78498
+      },
+      "key_completeness": {
+        "transaction_id": 1.0
+      },
+      "failed_columns": [
+        "notes"
+      ],
+      "duplicate_key_count": 0,
+      "row_count": 50000
+    }
+  },
+  "files_written": [
+    "/opt/airflow/outputs/results/adil_razack/03_big_data/airflow/employees_clean.csv",
+    "/opt/airflow/outputs/results/adil_razack/03_big_data/airflow/projects_clean.csv",
+    "/opt/airflow/outputs/results/adil_razack/03_big_data/airflow/transactions_clean.csv"
+  ]
+}
